@@ -25,8 +25,9 @@ namespace AddressBook.Infrastructure.db
         public int PhoneNumber { get; set; }
         public string Email { get; set; }
         public string Address { get; set; }
-        public DateTime CreatedDate { get; set; }
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
         public AddressType AddressType { get; set; }
+        public static DateTime LastUpdatedDate { get; internal set; }
 
         public Contact()
         {

@@ -1,4 +1,5 @@
 using AddressBook.Infrastructure.db;
+using AddressBook.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,6 +29,7 @@ namespace AddressBook
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ABContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultStr")));
+            services.AddScoped<ABRepository>();
             services.AddControllers();
         }
 
