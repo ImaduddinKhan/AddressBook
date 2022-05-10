@@ -1,7 +1,9 @@
-using AddressBook.Infrastructure.db;
-using AddressBook.Infrastructure.Repositories;
-using AddressBook.Infrastructure.Services;
-using AddressBook.Models;
+
+using AddressBook.Core.Models.db;
+using AddressBook.Core.Repository;
+using AddressBook.Core.Services;
+using AddressBook.Infrastructure;
+using AddressBook.Infrastructure.DBContext;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -17,7 +19,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AddressBook
+namespace AddressBook.WebApi
 {
     public class Startup
     {
@@ -40,7 +42,7 @@ namespace AddressBook
                 });
             services.AddSingleton(config.CreateMapper());
             services.AddScoped<IABRepository, ABRepository>();
-            services.AddScoped<IABServices, ABServices>();
+            services.AddScoped<IABService, ABService>();
             services.AddControllers();
             services.AddSwaggerGen();
         }

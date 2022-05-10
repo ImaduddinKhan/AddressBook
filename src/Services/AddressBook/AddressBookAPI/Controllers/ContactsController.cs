@@ -5,20 +5,18 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using AddressBook.Infrastructure.db;
-using AddressBook.Infrastructure.Repositories;
-using AddressBook.Infrastructure.Services;
-using AddressBook.Models;
+using AddressBook.Core.Services;
+using AddressBook.Core.Models.Application;
 
-namespace AddressBook.Controllers
+namespace AddressBook.WebApi.Controllers
 {
     [Route("api/v1")]
     [ApiController]
     public class ContactsController : ControllerBase
     {
-        private readonly IABServices _services;
+        private readonly IABService _services;
 
-        public ContactsController(IABServices services)
+        public ContactsController(IABService services)
         {
             _services = services;
         }

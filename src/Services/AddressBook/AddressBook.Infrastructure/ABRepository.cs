@@ -1,11 +1,13 @@
-﻿using AddressBook.Infrastructure.db;
+﻿using AddressBook.Core.Models.db;
+using AddressBook.Core.Repository;
+using AddressBook.Infrastructure.DBContext;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AddressBook.Infrastructure.Repositories
+namespace AddressBook.Infrastructure
 {
     public class ABRepository : IABRepository
     {

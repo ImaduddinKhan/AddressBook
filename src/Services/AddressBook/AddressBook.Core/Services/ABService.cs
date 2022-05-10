@@ -1,19 +1,20 @@
-﻿using AddressBook.Infrastructure.db;
-using AddressBook.Infrastructure.Repositories;
-using AddressBook.Models;
+﻿using AddressBook.Core.Models.db;
+using AddressBook.Core.Repository;
+using AddressBook.Core.Models;
 using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AddressBook.Core.Models.Application;
 
-namespace AddressBook.Infrastructure.Services
+namespace AddressBook.Core.Services
 {
-    public class ABServices : IABServices
+    public class ABService : IABService
     {
         private readonly IABRepository _repo;
         private readonly IMapper _mapper;
 
-        public ABServices(IABRepository repo, IMapper mapper)
+        public ABService(IABRepository repo, IMapper mapper)
         {
             _repo = repo;
             _mapper = mapper;

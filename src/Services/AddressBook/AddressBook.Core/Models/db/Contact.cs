@@ -3,19 +3,8 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace AddressBook.Infrastructure.db
+namespace AddressBook.Core.Models.db
 {
-    public class ABContext : DbContext
-    {
-        public ABContext(DbContextOptions<ABContext> options) : base(options)
-        {
-        }
-        public DbSet<Contact> Contacts { get; set; }
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Contact>().ToTable("ContactsAddressBook");
-        }
-    }
     public class Contact
     {
         [Key]
@@ -27,7 +16,7 @@ namespace AddressBook.Infrastructure.db
         public string Address { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         public AddressType AddressType { get; set; }
-        public static DateTime LastUpdatedDate { get; internal set; }
+        public static DateTime LastUpdatedDate { get; set; }
 
         public Contact()
         {

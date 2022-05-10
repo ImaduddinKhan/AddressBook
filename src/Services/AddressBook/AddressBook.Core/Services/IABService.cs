@@ -1,12 +1,12 @@
-﻿using AddressBook.Infrastructure.db;
-using AddressBook.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using AddressBook.Core.Models;
+using AddressBook.Core.Models.Application;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace AddressBook.Infrastructure.Services
+
+namespace AddressBook.Core.Services
 {
-    public interface IABServices
+    public interface IABService
     {
         Task<IEnumerable<ContactModel>> GetAll(int PageIndex, int PageSize);
         Task<ContactModel> GetById(int id);

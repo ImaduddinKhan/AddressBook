@@ -1,6 +1,7 @@
-﻿using System;
+﻿using AddressBook.Core.Models;
+using System;
 
-namespace AddressBook.Core.Models.db
+namespace AddressBook.Core.Models.Application
 {
     public class ContactModel : AddContactModel
     {

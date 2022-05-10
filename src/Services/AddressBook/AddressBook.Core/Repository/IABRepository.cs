@@ -1,8 +1,8 @@
-﻿using AddressBook.Infrastructure.db;
+﻿using AddressBook.Core.Models.db;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace AddressBook.Infrastructure.Repositories
+namespace AddressBook.Core.Repository
 {
     public interface IABRepository
     {
