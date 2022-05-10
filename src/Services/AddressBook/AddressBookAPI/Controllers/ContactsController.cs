@@ -33,12 +33,9 @@ namespace AddressBook.Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult<int>> Post(AddContactModel ContactModel)
-        {
-            var contact = new Contact();
-            await _services.Create(ContactModel);
-            return Ok(CreatedAtAction("GetContact", new { id = contact.Id  }, ContactModel));
-        }
+        public async Task<ActionResult<int>> Post(AddContactModel ContactModel) 
+            => await _services.Create(ContactModel);
+        //return Ok(CreatedAtAction("GetAll", new { id = contact.Id  }, ContactModel));
 
         [HttpPut("{id}")]
         public async Task<ActionResult<int>> Update(UpdateContactModel ContactModel)
@@ -48,7 +45,7 @@ namespace AddressBook.Controllers
         }
 
         [HttpDelete("{id}")]
-        public void DeleteContact(int id) 
-            =>  _services.Delete(id);
+        public async Task DeleteContact(int id) 
+            =>  await _services.Delete(id);
     }
 }

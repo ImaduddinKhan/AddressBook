@@ -42,6 +42,7 @@ namespace AddressBook
             services.AddScoped<IABRepository, ABRepository>();
             services.AddScoped<IABServices, ABServices>();
             services.AddControllers();
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,8 +50,15 @@ namespace AddressBook
         {
             if (env.IsDevelopment())
             {
+                app.UseSwagger();
+                app.UseSwaggerUI();
                 app.UseDeveloperExceptionPage();
             }
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+
+            });
 
             app.UseHttpsRedirection();
 

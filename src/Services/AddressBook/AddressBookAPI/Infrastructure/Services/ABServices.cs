@@ -35,7 +35,7 @@ namespace AddressBook.Infrastructure.Services
         {
             var dbContact = new Contact();
             dbContact = _mapper.Map<Contact>(contactModel);
-            return await _repo.Create(new Contact());
+            return await _repo.Create(dbContact);
         }
 
         public async Task<int> UpdateContact(UpdateContactModel contactModel)
@@ -51,10 +51,13 @@ namespace AddressBook.Infrastructure.Services
         }
         public async Task Delete(int id)
         {
-            var contactId = await _repo.GetById(id);
-            //Todo: Exception Handling
-            _repo.Delete(contactId);
-            
+            var contact = await _repo.GetById(id);
+            if(contact == null)
+            {
+                // Error Handling
+            }
+            else
+            _repo.Delete(contact);
         }
 
     }

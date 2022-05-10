@@ -13,5 +13,6 @@ namespace AddressBook.Infrastructure.Services
         Task<int> Create(AddContactModel contactModel);
         Task<int> UpdateContact(UpdateContactModel contactModel);
         Task Delete(int id);
+
     }
 }

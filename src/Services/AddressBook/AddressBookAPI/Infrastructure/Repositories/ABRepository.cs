@@ -24,7 +24,7 @@ namespace AddressBook.Infrastructure.Repositories
 
         public async Task<Contact> GetById(int id)
         {
-            return await _context.Contacts.SingleOrDefaultAsync(c => c.Id == id);
+            return await _context.Contacts.FindAsync(id);
         }
 
         public async Task<int> Create(Contact contact)
@@ -42,7 +42,7 @@ namespace AddressBook.Infrastructure.Repositories
         public void Delete(Contact contact)
         {
             _context.Contacts.Remove(contact);
-
+            _context.SaveChanges();
         }
 
         public async Task<int> SaveChanges()
