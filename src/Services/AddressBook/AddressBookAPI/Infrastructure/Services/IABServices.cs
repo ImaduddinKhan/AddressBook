@@ -10,8 +10,8 @@ namespace AddressBook.Infrastructure.Services
     {
         Task<IEnumerable<ContactModel>> GetAll(int PageIndex, int PageSize);
         Task<ContactModel> GetById(int id);
-        Task<int> Create(AddContactModel contact);
-        Task<int> UpdateContact(UpdateContactModel contact);
+        Task<int> Create(AddContactModel contactModel);
+        Task<int> UpdateContact(UpdateContactModel contactModel);
         Task Delete(int id);
     }
 }

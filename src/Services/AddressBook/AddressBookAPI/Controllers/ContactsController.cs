@@ -48,7 +48,7 @@ namespace AddressBook.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task DeleteContact(int id) 
-            => await _services.Delete(id);
+        public void DeleteContact(int id) 
+            =>  _services.Delete(id);
     }
 }

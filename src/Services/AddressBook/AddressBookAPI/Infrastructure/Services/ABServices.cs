@@ -1,6 +1,8 @@
 ﻿using AddressBook.Infrastructure.db;
 using AddressBook.Infrastructure.Repositories;
 using AddressBook.Models;
+using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -8,7 +10,52 @@ namespace AddressBook.Infrastructure.Services
 {
     public class ABServices : IABServices
     {
-       
+        private readonly IABRepository _repo;
+        private readonly IMapper _mapper;
+
+        public ABServices(IABRepository repo, IMapper mapper)
+        {
+            _repo = repo;
+            _mapper = mapper;
+        }
+
+        public async Task<IEnumerable<ContactModel>> GetAll(int PageIndex, int PageSize)
+        {
+            var iEnumerable =  await _repo.GetAll(PageIndex, PageSize);
+            var modelList = _mapper.Map<List<ContactModel>>(iEnumerable);
+            return modelList;
+        }
+
+        public async Task<ContactModel> GetById(int id)
+        {
+            return _mapper.Map<ContactModel>(await _repo.GetById(id));
+        }
+
+        public async Task<int> Create(AddContactModel contactModel)
+        {
+            var dbContact = new Contact();
+            dbContact = _mapper.Map<Contact>(contactModel);
+            return await _repo.Create(new Contact());
+        }
+
+        public async Task<int> UpdateContact(UpdateContactModel contactModel)
+        {
+            var contact = await _repo.GetById(contactModel.Id);
+            //Todo: Exception Handling
+            contact.FullName = contactModel.FullName;
+            contact.Email = contactModel.Email;
+            contact.PhoneNumber = contactModel.PhoneNumber;
+            contact.Address = contactModel.Address;
+
+            return await _repo.UpdateContact(contact);
+        }
+        public async Task Delete(int id)
+        {
+            var contactId = await _repo.GetById(id);
+            //Todo: Exception Handling
+            _repo.Delete(contactId);
+            
+        }
 
     }
 }

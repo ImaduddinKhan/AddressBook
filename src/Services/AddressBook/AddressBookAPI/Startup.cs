@@ -1,5 +1,8 @@
 using AddressBook.Infrastructure.db;
 using AddressBook.Infrastructure.Repositories;
+using AddressBook.Infrastructure.Services;
+using AddressBook.Models;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,7 +32,15 @@ namespace AddressBook
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ABContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultStr")));
-            services.AddScoped<ABRepository>();
+            var config = new MapperConfiguration(mc => 
+                {
+                    mc.CreateMap<ContactModel, Contact>().ReverseMap();
+                    mc.CreateMap<AddContactModel, Contact>();
+                    mc.CreateMap<UpdateContactModel, Contact>();
+                });
+            services.AddSingleton(config.CreateMapper());
+            services.AddScoped<IABRepository, ABRepository>();
+            services.AddScoped<IABServices, ABServices>();
             services.AddControllers();
         }
 
