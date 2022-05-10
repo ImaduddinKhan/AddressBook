@@ -1,5 +1,6 @@
 ﻿using AddressBook.Core.Models;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace AddressBook.Core.Models.Application
 {
@@ -11,10 +12,15 @@ namespace AddressBook.Core.Models.Application
 
     public class AddContactModel
     {
+        [Required]
         public string FullName { get; set; }
+        [Required]
         public int PhoneNumber { get; set; }
+        [Required]
+        [EmailAddress]
         public string Email { get; set; }
         public string Address { get; set; }
+        [Required]
         public AddressTypeEnum AddressType { get; set; }
     }
 
