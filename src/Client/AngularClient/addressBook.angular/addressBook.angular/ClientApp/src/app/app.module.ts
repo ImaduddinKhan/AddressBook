@@ -7,12 +7,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AddressbookComponent } from './addressbook/addressbook.component';
 import { AddressbookFormComponent } from './addressbook/addressbook-form/addressbook-form.component';
+import { FilterPipe } from './addressbook/addressbook-form/filter.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddressbookComponent,
     AddressbookFormComponent,
+    FilterPipe,
+
   ],
   imports: [
     BrowserModule,

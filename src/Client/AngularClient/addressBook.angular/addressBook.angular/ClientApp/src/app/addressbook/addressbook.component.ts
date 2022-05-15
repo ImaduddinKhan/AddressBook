@@ -16,6 +16,8 @@ export class AddressbookComponent implements OnInit {
     this.service.getContacts();
   }
 
+  
+
   populateForm(selectedRecords: Contacts) {
     this.service.model = Object.assign({}, selectedRecords);
   }
@@ -30,4 +32,5 @@ export class AddressbookComponent implements OnInit {
       }
     )
   }
+  search = '';
 }

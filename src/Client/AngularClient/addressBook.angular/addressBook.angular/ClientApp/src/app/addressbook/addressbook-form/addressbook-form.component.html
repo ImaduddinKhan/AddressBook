@@ -29,11 +29,11 @@
     <div class="form-group col-md-3">
       <label>Address Type</label>
       <input class="form-control form-control-lg" placeholder="Address Type"
-             name="addressType" #addresstype="ngModel" [(ngModel)]="service.model.addressType "/>
+             name="addressType" #addresstype="ngModel" [(ngModel)]="service.model.addressType " />
     </div>
     <div class="form-group">
       <label></label><br />
       <button class="btn btn-primary btn-lg btn-block" type="submit" [disabled]="form.invalid">Submit</button>
-    </div>
+    </div><br />
   </div>
 </form>
