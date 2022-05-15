@@ -1,0 +1,29 @@
+<div class="jumbotron py-2">
+  <h1 class="display-4 text-center">Contacts Form</h1>
+</div>
+<div class="row">
+  <app-addressbook-form></app-addressbook-form>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Full Name</th>
+        <th>Phone No.</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Address Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of service.list">
+        <td (click)="populateForm(row)">{{row.fullName}}</td>
+        <td (click)="populateForm(row)">{{row.phoneNumber}}</td>
+        <td (click)="populateForm(row)">{{row.email}}</td>
+        <td (click)="populateForm(row)">{{row.address}}</td>
+        <td (click)="populateForm(row)">{{row.addressType}}</td>
+        <td>
+          <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(row.id)">Delete</i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
