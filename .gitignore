@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/src/Client/AngularClient/addressBook.angular/.vs
+/src/Client/AngularClient/addressBook.angular/bin
+/src/Client/AngularClient/addressBook.angular/obj
+
