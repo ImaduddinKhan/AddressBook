@@ -17,6 +17,13 @@ export class AddressbookFormComponent implements OnInit {
 
   }
 
+  public createButtonClicked: boolean = false;
+
+  toggleShowForm(): void {
+    this.createButtonClicked = !this.createButtonClicked;
+    console.log(this.createButtonClicked);
+  }
+
   onSubmit(form: NgForm) {
     if (this.service.model.id == 0)
       this.createContact(form);
