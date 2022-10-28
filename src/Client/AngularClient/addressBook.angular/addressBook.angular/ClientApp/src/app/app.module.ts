@@ -1,27 +1,35 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AddressbookComponent } from './addressbook/addressbook.component';
-import { AddressbookFormComponent } from './addressbook/addressbook-form/addressbook-form.component';
-import { FilterPipe } from './addressbook/addressbook-form/filter.pipe';
+import { FilterNamePipe } from './home/filter.pipe';
+import { FilterPhonePipe } from './home/filter.pipe.phone';
+import { HomeComponent } from './home/home.component';
+import { EditContactComponent } from './edit-contact/edit-contact.component';
+import { CreateContactComponent } from './create-contact/create-contact.component';
+import { ContactDetailComponent } from './contact-detail/contact-detail.component'
 
 @NgModule({
   declarations: [
     AppComponent,
-    AddressbookComponent,
-    AddressbookFormComponent,
-    FilterPipe,
+    FilterNamePipe,
+    HomeComponent,
+    EditContactComponent,
+    FilterPhonePipe,
+    CreateContactComponent,
+    ContactDetailComponent
 
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

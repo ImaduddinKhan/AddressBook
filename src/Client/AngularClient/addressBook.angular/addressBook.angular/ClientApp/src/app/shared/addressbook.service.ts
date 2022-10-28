@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Contacts } from "./addressbook.model";
+import { Contacts} from "./addressbook.model";
 import { HttpClient } from "@angular/common/http";
 
 
@@ -13,7 +13,7 @@ export class AddressBookService {
 
   readonly _baseUrl = "https://localhost:44384/api/AddressBook";
   model: Contacts = new Contacts();
-  list: Contacts[] | undefined;
+  list: Contacts[];
 
   postContact() {
     return this.http.post(this._baseUrl, this.model);

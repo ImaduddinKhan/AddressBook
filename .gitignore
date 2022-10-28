@@ -3,6 +3,6 @@
 ################################################################################
 
 /src/Client/AngularClient/addressBook.angular/.vs
-/src/Client/AngularClient/addressBook.angular/bin
-/src/Client/AngularClient/addressBook.angular/obj
+/src/Client/AngularClient/addressBook.angular/addressBook.angular/bin
+/src/Client/AngularClient/addressBook.angular/addressBook.angular/obj
 

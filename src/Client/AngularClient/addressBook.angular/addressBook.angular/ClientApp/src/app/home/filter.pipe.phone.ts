@@ -1,12 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({
-  name: 'filter'
+  name: 'filterbyphone'
 })
-export class FilterPipe implements PipeTransform {
+export class FilterPhonePipe implements PipeTransform {
   transform(value: any, searchValue: any) {
     if (!searchValue) return value;
-    return value.filter((v: { fullName: string; phoneNumber: string; }) =>
-      v.fullName.toLowerCase().indexOf(searchValue.toLowerCase()) > -1 ||
+    return value.filter((v: { phoneNumber: string; }) =>
       v.phoneNumber.toLowerCase().indexOf(searchValue.toLowerCase()) > -1)
   }
 
