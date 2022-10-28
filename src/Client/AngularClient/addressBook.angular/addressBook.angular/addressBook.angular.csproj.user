@@ -2,7 +2,7 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
-    <TypeScriptCompile Update="ClientApp\src\app\addressbook\addressbook-form\filter.pipe.ts">
+    <TypeScriptCompile Update="ClientApp\src\app\home\filter.pipe.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
   </ItemGroup>

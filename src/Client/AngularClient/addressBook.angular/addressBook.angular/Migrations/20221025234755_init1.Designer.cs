@@ -10,8 +10,8 @@ using addressBook.angular.Models;
 namespace addressBook.angular.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20220515150003_Init")]
-    partial class Init
+    [Migration("20221025234755_init1")]
+    partial class init1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

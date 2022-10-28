@@ -11,6 +11,8 @@
     <!-- Set this to true if you enable server-side prerendering -->
     <BuildServerSideRenderer>false</BuildServerSideRenderer>
 	<TypeScriptExperimentalDecorators>true</TypeScriptExperimentalDecorators>
+	<StartupObject></StartupObject>
+	<PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
 
   <ItemGroup>
@@ -236,10 +238,6 @@
     <None Include="ClientApp\node_modules\bootstrap\scss\_type.scss" />
     <None Include="ClientApp\node_modules\bootstrap\scss\_utilities.scss" />
     <None Include="ClientApp\node_modules\bootstrap\scss\_variables.scss" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\src\app\addressbook\addressbook-form\filter.pipe.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

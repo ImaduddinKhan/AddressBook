@@ -1,9 +1,13 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace addressBook.angular.Models
 {
     public class Contact
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
         public string FullName { get; set; }
         public string PhoneNumber { get; set; }
@@ -12,4 +16,6 @@ namespace addressBook.angular.Models
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         public AddressType AddressType { get; set; }
     }
+
+
 }
