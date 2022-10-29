@@ -1,0 +1,83 @@
+<div class="jumbotron py-2">
+  <h1 class="display-4 text-center">Edit Contact</h1>
+</div>
+
+<div class="container">
+  <h1>Update Post</h1>
+
+  <a href="#" routerLink="/" class="btn btn-primary">Back</a>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="form-group">
+      <label for="fullName">Full Name:</label>
+      <input
+        formControlName="fullName"
+        id="fullName"
+        type="text"
+        [(ngModel)]="editContact.fullName"
+        class="form-control"
+      />
+      <!--<div *ngIf="f['title'].touched && f['title'].invalid" class="alert alert-danger">
+      <div *ngIf="f['title'].errors && f['title'].errors['required']">Title is required.</div>
+    </div>-->
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input
+        formControlName="email"
+        id="email"
+        type="text"
+        [(ngModel)]="editContact.email"
+        class="form-control"
+      />
+      <!--<div *ngIf="f['title'].touched && f['title'].invalid" class="alert alert-danger">
+      <div *ngIf="f['title'].errors && f['title'].errors['required']">Title is required.</div>
+    </div>-->
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Phone Number:</label>
+      <input
+        formControlName="phoneNumber"
+        id="phone"
+        type="text"
+        [(ngModel)]="editContact.phoneNumber"
+        class="form-control"
+      />
+      <!--<div *ngIf="f['title'].touched && f['title'].invalid" class="alert alert-danger">
+      <div *ngIf="f['title'].errors && f['title'].errors['required']">Title is required.</div>
+    </div>-->
+    </div>
+
+    <div class="form-group">
+      <label for="address">Address:</label>
+      <input
+        formControlName="address"
+        id="address"
+        type="text"
+        [(ngModel)]="editContact.address"
+        class="form-control"
+      />
+      <!--<div *ngIf="f['title'].touched && f['title'].invalid" class="alert alert-danger">
+      <div *ngIf="f['title'].errors && f['title'].errors['required']">Title is required.</div>
+    </div>-->
+    </div>
+
+    <div class="form-group">
+      <label for="addressT">Address Type:</label>
+      <input
+        formControlName="addressType"
+        id="addressT"
+        type="text"
+        [(ngModel)]="editContact.addressType"
+        class="form-control"
+      />
+      <!--<div *ngIf="f['title'].touched && f['title'].invalid" class="alert alert-danger">
+      <div *ngIf="f['title'].errors && f['title'].errors['required']">Title is required.</div>
+    </div>-->
+    </div>
+
+    <button class="btn btn-primary" type="submit">Update</button>
+  </form>
+</div>
