@@ -47,4 +47,12 @@ export class AddressbookService {
   findByTitle(title: any): Observable<Contact[]> {
     return this.http.get<any[]>(`${this._baseUrl}?title=${title}`);
   }
+
+  getContacts(pageNumber: number, pageSize: number) {
+    return this.http.get(
+      `${
+        this._baseUrl
+      }/${'?pageNumber='}${pageNumber}&${'?pageSize='}${pageSize}`
+    );
+  }
 }

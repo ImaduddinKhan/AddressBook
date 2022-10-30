@@ -1,5 +1,9 @@
-using addressBook.angular.Models;
-using addressBook.angular.Repository;
+using AddressBookAngular.Infrastructure.DbContexts;
+using AddressBookAngular.Infrastructure.Models.Db;
+using AddressBookAngular.Infrastructure.Services;
+using AddressBookAngular.Models;
+using AddressBookAngular.Repository;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -7,7 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace addressBook.angular
+namespace AddressBookAngular
 {
     public class Startup
     {
@@ -23,8 +27,18 @@ namespace addressBook.angular
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<Context>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
-            services.AddTransient<IAddressBookRepository, AddressBookRepository>();
+            services.AddDbContext<AddressBookDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
+
+            var configuration = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<ContactModel, Contact>().ReverseMap();
+                cfg.CreateMap<AddContactModel, Contact>();
+                cfg.CreateMap<UpdateContactModel, Contact>();
+            });
+            services.AddSingleton(configuration.CreateMapper());
+            services.AddScoped<IAddressBookRepository, AddressBookRepository>();
+            services.AddScoped<IAddressBookService, AddressBookService>();
+            services.AddControllers();
             services.AddControllersWithViews();
 
             services.AddCors(options =>

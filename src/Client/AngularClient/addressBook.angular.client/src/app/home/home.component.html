@@ -54,7 +54,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let contact of contacts; let i = index">
+        <tr
+          *ngFor="
+            let contact of contacts
+              | paginate
+                : { itemsPerPage: pSize, currentPage: pNo, totalItems: pSize }
+          "
+        >
           <td class="align-middle">{{ contact.fullName }}</td>
           <td class="align-middle">{{ contact.phoneNumber }}</td>
           <td class="align-middle">{{ contact.email }}</td>
@@ -86,4 +92,8 @@
       </tbody>
     </table>
   </div>
+  <pagination-controls
+    class="text-center"
+    (pageChange)="pageChangeEvent($event)"
+  ></pagination-controls>
 </div>

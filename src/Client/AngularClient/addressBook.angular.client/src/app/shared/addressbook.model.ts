@@ -23,22 +23,19 @@ export class Contact {
 }
 
 export class AddContact {
-  public id?: number;
   public fullName: string;
   public email: string;
   public phoneNumber?: number;
   public address: string;
   public addressType?: AddressType;
   constructor(
-    id: number,
     fullName: string,
     email: string,
     phoneNumber: number,
     address: string,
     addressType: AddressType
   ) {
-    (this.id = id),
-      (this.fullName = fullName),
+    (this.fullName = fullName),
       (this.email = email),
       (this.phoneNumber = phoneNumber),
       (this.address = address),

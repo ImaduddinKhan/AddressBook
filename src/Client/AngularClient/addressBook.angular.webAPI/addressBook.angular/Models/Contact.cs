@@ -1,16 +1,16 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using addressBook.angular.Infrastructure.Models.Db;
+using AddressBookAngular.Infrastructure.Models.Db;
 
-namespace addressBook.angular.Models
+namespace AddressBookAngular.Models
 {
     public class ContactModel : AddContactModel
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public DateTime CreatedDate { get; set; }
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
         public DateTime LastUpdatedDate { get; set; }
 
     }

@@ -1,45 +1,53 @@
-﻿using addressBook.angular.Models;
+﻿using AddressBookAngular.Infrastructure.DbContexts;
+using AddressBookAngular.Infrastructure.Models.Db;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
-namespace addressBook.angular.Repository
+namespace AddressBookAngular.Repository
 {
     public class AddressBookRepository : IAddressBookRepository
     {
-        public readonly Context _context;
+        private readonly AddressBookDbContext _db;
 
-        public AddressBookRepository(Context context)
+        public AddressBookRepository(AddressBookDbContext db)
         {
-            _context = context;
+            _db = db;
         }
 
-        public async Task Create<T>(T entity) where T : class
+        public async Task<IEnumerable<Contact>> GetAll(int PageNumber, int PageSize)
         {
-            _ = await _context.Set<T>().AddAsync(entity);
-            _ = await _context.SaveChangesAsync();
+            return await _db.Contacts.Skip(PageNumber).Take(PageSize).ToListAsync();
         }
 
-        public async Task Delete<T>(T entity) where T : class
+        public async Task<Contact> GetById(int id)
         {
-            _context.Set<T>().Remove(entity);
-            _ = await _context.SaveChangesAsync();
+            return await _db.Contacts.FindAsync(id);
         }
 
-        public async Task<IEnumerable<T>> GetAll<T>() where T : class
+        public async Task<int> CreateContact(Contact model)
         {
-            return await _context.Set<T>().ToListAsync();
+            await _db.Contacts.AddAsync(model);
+            return await SaveChanges();
         }
 
-        public async Task<T> GetById<T>(long id) where T : class
+        public async Task<int> UpdateContact(Contact contact)
         {
-            return await _context.Set<T>().FindAsync(id);
+            Contact.LastUpdatedDate = DateTime.UtcNow;
+            return await SaveChanges();
         }
 
-        public async Task Update<T>(T entity) where T : class
+        public void Delete(Contact contact)
         {
-            _context.Set<T>().Update(entity);
-            await _context.SaveChangesAsync();
+            _db.Contacts.Remove(contact);
+            _db.SaveChanges();
+        }
+
+        public async Task<int> SaveChanges()
+        {
+            return await _db.SaveChangesAsync();
         }
     }
 }

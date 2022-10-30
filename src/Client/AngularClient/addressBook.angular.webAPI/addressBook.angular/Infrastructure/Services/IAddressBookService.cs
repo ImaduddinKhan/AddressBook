@@ -6,10 +6,10 @@ namespace AddressBookAngular.Infrastructure.Services
 {
     public interface IAddressBookService
     {
-        Task Create(AddContactModel model);
         Task<IEnumerable<ContactModel>> GetAll(int pageNumber, int pageSize);
         Task<ContactModel> GetById(int id);
-        Task Update(UpdateContactModel model);
+        Task<int> Create(AddContactModel model);
+        Task<int> Update(int id, UpdateContactModel model);
         Task Delete(int id);
     }
 }

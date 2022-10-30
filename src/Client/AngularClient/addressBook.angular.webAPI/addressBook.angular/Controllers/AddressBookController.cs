@@ -23,7 +23,7 @@ namespace AddressBookAngular.Controllers
 
         // GET: api/<ValuesController>
         [HttpGet]
-        public async Task<IEnumerable<ContactModel>> GetAll(int PageNumber = 0, int PageSize = 10)
+        public async Task<IEnumerable<ContactModel>> GetAll(int PageNumber = 0, int PageSize = 200)
         {
             return await _service.GetAll(PageNumber, PageSize);
         }
@@ -43,9 +43,9 @@ namespace AddressBookAngular.Controllers
 
         // PUT api/<ValuesController>/5
         [HttpPut("{id}")]
-        public async Task<ActionResult<int>> Put(UpdateContactModel model)
+        public async Task<ActionResult<int>> Put(int id, UpdateContactModel model)
         {
-            await _service.Update(model);
+            await _service.Update(id, model);
             return Ok();
         }
 

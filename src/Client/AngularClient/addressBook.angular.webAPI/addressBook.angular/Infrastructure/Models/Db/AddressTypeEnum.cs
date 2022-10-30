@@ -1,4 +1,4 @@
-﻿namespace addressBook.angular.Infrastructure.Models.Db
+﻿namespace AddressBookAngular.Infrastructure.Models.Db
 {
     public enum AddressTypeEnum
     {

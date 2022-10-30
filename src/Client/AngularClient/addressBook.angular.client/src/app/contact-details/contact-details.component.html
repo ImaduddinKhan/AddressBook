@@ -1,36 +1,42 @@
-<div>
-  <h4>Contact</h4>
-  <div>
-    <label><strong>Full Name:</strong></label> {{ currentContact.fullName }}
-  </div>
-  <div>
-    <label><strong>Email:</strong></label>
-    {{ currentContact.email }}
-  </div>
-  <div>
-    <label><strong>Phone:</strong></label>
-    {{ currentContact.phoneNumber }}
-  </div>
-  <div>
-    <label><strong>Address:</strong></label>
-    {{ currentContact.address }}
-  </div>
-  <div>
-    <label><strong>AddressType:</strong></label>
-    {{ currentContact.addressType }}
-  </div>
-
-  <i
-    class="far fa-lg text-primary"
-    href="#"
-    routerLink="/contacts/edit/{{ currentContact.id }}"
-    >Edit</i
-  >
+<div class="jumbotron py-2">
+  <h1 class="display-4 text-center">Contacts</h1>
 </div>
 
-<div *ngIf="!currentContact">
-  <br />
-  <p>Please click on a Contact...</p>
+<div class="container">
+  <div>
+    <div>
+      <label><strong>Full Name:</strong></label> {{ currentContact.fullName }}
+    </div>
+    <div>
+      <label><strong>Email:</strong></label>
+      {{ currentContact.email }}
+    </div>
+    <div>
+      <label><strong>Phone:</strong></label>
+      {{ currentContact.phoneNumber }}
+    </div>
+    <div>
+      <label><strong>Address:</strong></label>
+      {{ currentContact.address }}
+    </div>
+    <div>
+      <label><strong>AddressType:</strong></label>
+      {{ currentContact.addressType }}
+    </div>
+
+    <button
+      class="far fa-lg btn btn-primary"
+      href="#"
+      routerLink="/contacts/edit/{{ currentContact.id }}"
+    >
+      Edit
+    </button>
+  </div>
+  <!-- 
+  <div *ngIf="!currentContact">
+    <br />
+    <p>Please click on a Contact...</p>
+  </div> -->
 </div>
 
 <!--<ng-template #editable>

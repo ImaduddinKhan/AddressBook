@@ -1,17 +1,17 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace addressBook.angular.Migrations
+namespace AddressBookAngular.Migrations
 {
-    public partial class init1 : Migration
+    public partial class contactsBook : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Contacts",
+                name: "AddressBookContacts",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FullName = table.Column<string>(nullable: true),
                     PhoneNumber = table.Column<string>(nullable: true),
@@ -22,14 +22,14 @@ namespace addressBook.angular.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Contacts", x => x.Id);
+                    table.PrimaryKey("PK_AddressBookContacts", x => x.Id);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Contacts");
+                name: "AddressBookContacts");
         }
     }
 }

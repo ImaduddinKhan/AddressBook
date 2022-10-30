@@ -1,6 +1,6 @@
 using System;
 
-namespace addressBook.angular
+namespace AddressBookAngular
 {
     public class WeatherForecast
     {

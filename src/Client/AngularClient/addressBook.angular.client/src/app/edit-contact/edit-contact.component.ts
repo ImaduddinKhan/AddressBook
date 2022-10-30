@@ -59,7 +59,7 @@ export class EditContactComponent implements OnInit {
     });
   }
 
-  onEditComplete(id: number) {
-    this.router.navigate(['/contacts'], {});
+  onEditComplete() {
+    this.router.navigate(['/']);
   }
 }
