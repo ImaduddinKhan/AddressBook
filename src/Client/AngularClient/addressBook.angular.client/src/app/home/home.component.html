@@ -22,6 +22,10 @@
         class="form-control form-control-"
         type="search"
         placeholder="Search by Name"
+        [(ngModel)]="fullName"
+        [routerLink]="['/contacts']"
+        [queryParams]="{}"
+        queryParamsHandling="merge"
       />
     </div>
     <div class="form-group col-md-4">
@@ -57,8 +61,13 @@
         <tr
           *ngFor="
             let contact of contacts
+              | filterbyname: fullName
               | paginate
-                : { itemsPerPage: pSize, currentPage: pNo, totalItems: pSize }
+                : {
+                    itemsPerPage: 10,
+                    currentPage: pNo,
+                    totalItems: pSize
+                  }
           "
         >
           <td class="align-middle">{{ contact.fullName }}</td>
@@ -95,5 +104,8 @@
   <pagination-controls
     class="text-center"
     (pageChange)="pageChangeEvent($event)"
+    [routerLink]="['/contacts']"
+    [queryParams]="{ pageNumber: pNo, pageSize: pSize }"
+    queryParamsHandling="merge"
   ></pagination-controls>
 </div>

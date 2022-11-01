@@ -22,6 +22,11 @@ export class Contact {
   }
 }
 
+export class PagiginatedContacts {
+  public dataCount: number;
+  public data: Contact[];
+}
+
 export class AddContact {
   public fullName: string;
   public email: string;
@@ -89,6 +94,18 @@ export class ViewContact {
       (this.address = address),
       (this.addressType = addressType);
   }
+}
+
+export interface Pagination {
+  currentPage: number;
+  itemsPerPage: number;
+  totalItems: number;
+  totalPages: number;
+}
+
+export class PaginatedResult<T> {
+  result: T;
+  pagination: Pagination;
 }
 
 enum AddressType {

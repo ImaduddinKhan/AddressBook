@@ -14,49 +14,41 @@ export class HomeComponent implements OnInit {
   currentIndex = -1;
   fullName = '';
 
-  pageContacts: any;
   pNo: number = 0;
-  pSize: number = 20;
+  pSize?: number = 100;
 
-  constructor(private service: AddressbookService, private router: Router) {}
+  constructor(
+    private service: AddressbookService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.retrieveContacts();
-    this.getPageContacts();
+    this.route.queryParams.subscribe((params) => {
+      console.log(params);
+    });
+    this.route.queryParams.subscribe((params) => {
+      this.pNo = params['pageNumber'];
+      this.pSize = params['pageSize'];
+    });
   }
 
-  getPageContacts() {
-    this.service
-      .getContacts(this.pNo, this.pSize)
-      .subscribe((response: any) => {
-        this.pageContacts = response.data;
-        this.pSize = response.total;
-        // this.router.navigate(['/contacts'], {
-        //   queryParams: { pageNumber: this.pNo, pageSize: this.pSize },
-        // });
-      });
-  }
-
-  pageChangeEvent(event: number) {
+  pageChangeEvent(event: any) {
     this.pNo = event;
-    this.pSize = 20;
-    console.log(this.pSize);
-    this.getPageContacts();
+    this.retrieveContacts();
   }
 
   retrieveContacts(): void {
-    this.service.getAll().subscribe({
+    this.service.getAllPagiginatedContacts(this.pNo, this.pSize).subscribe({
       next: (data) => {
-        this.contacts = data;
+        //
+        // this.pSize = data.dataCount;
+        this.contacts = data.data;
         console.log(data);
       },
       error: (e) => console.error(e),
     });
-  }
-
-  refreshList(): void {
-    this.retrieveContacts();
-    this.currentIndex = -1;
   }
 
   deleteContact(id: number) {

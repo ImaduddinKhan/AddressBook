@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import {
   AddContact,
   Contact,
+  PagiginatedContacts,
   UpdateContact,
   ViewContact,
 } from './addressbook.model';
@@ -48,11 +49,25 @@ export class AddressbookService {
     return this.http.get<any[]>(`${this._baseUrl}?title=${title}`);
   }
 
-  getContacts(pageNumber: number, pageSize: number) {
-    return this.http.get(
+  // getContacts(
+  //   pageNumber: number,
+  //   pageSize: number
+  // ): Observable<PagiginatedContacts> {
+  //   return this.http.get<PagiginatedContacts>(
+  //     `${
+  //       this._baseUrl
+  //     }/${'?pageNumber='}${pageNumber}&${'pageSize='}${pageSize}`
+  //   );
+  // }
+
+  getAllPagiginatedContacts(
+    pageNumber: number,
+    pageSize: number
+  ): Observable<PagiginatedContacts> {
+    return this.http.get<PagiginatedContacts>(
       `${
         this._baseUrl
-      }/${'?pageNumber='}${pageNumber}&${'?pageSize='}${pageSize}`
+      }/${'?pageNumber='}${pageNumber}&${'pageSize='}${pageSize}`
     );
   }
 }

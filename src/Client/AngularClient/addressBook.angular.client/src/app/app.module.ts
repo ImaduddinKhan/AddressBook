@@ -11,6 +11,7 @@ import { CreateContactComponent } from './create-contact/create-contact.componen
 import { HomeComponent } from './home/home.component';
 import { ContactDetailsComponent } from './contact-details/contact-details.component';
 import { EditContactComponent } from './edit-contact/edit-contact.component';
+import { FilterbynamePipe } from './home/filterbyname.pipe';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { EditContactComponent } from './edit-contact/edit-contact.component';
     HomeComponent,
     ContactDetailsComponent,
     EditContactComponent,
+    FilterbynamePipe,
   ],
   imports: [
     BrowserModule,
