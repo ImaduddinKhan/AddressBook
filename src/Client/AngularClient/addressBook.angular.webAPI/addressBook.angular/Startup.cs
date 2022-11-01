@@ -1,4 +1,5 @@
 using AddressBookAngular.Infrastructure.DbContexts;
+using AddressBookAngular.Infrastructure.Models;
 using AddressBookAngular.Infrastructure.Models.Db;
 using AddressBookAngular.Infrastructure.Services;
 using AddressBookAngular.Models;
@@ -34,6 +35,7 @@ namespace AddressBookAngular
                 cfg.CreateMap<ContactModel, Contact>().ReverseMap();
                 cfg.CreateMap<AddContactModel, Contact>();
                 cfg.CreateMap<UpdateContactModel, Contact>();
+                cfg.CreateMap(typeof(PaginationData<ContactModel>), typeof(PaginationData<Contact>)).ReverseMap();
             });
             services.AddSingleton(configuration.CreateMapper());
             services.AddScoped<IAddressBookRepository, AddressBookRepository>();

@@ -1,4 +1,5 @@
-﻿using AddressBookAngular.Infrastructure.Services;
+﻿using AddressBookAngular.Infrastructure.Models;
+using AddressBookAngular.Infrastructure.Services;
 using AddressBookAngular.Models;
 using AddressBookAngular.Repository;
 using Microsoft.AspNetCore.Mvc;
@@ -23,9 +24,14 @@ namespace AddressBookAngular.Controllers
 
         // GET: api/<ValuesController>
         [HttpGet]
-        public async Task<IEnumerable<ContactModel>> GetAll(int PageNumber = 0, int PageSize = 200)
+        public async Task<PaginationData<ContactModel>> GetAll(
+            string qName,
+            string orderBy,
+            bool isDesc,
+            int pageNumber = 0,
+            int pageSize = 1000)
         {
-            return await _service.GetAll(PageNumber, PageSize);
+            return await _service.GetAllPaginatedContacts(qName, orderBy, isDesc, pageNumber, pageSize);
         }
 
         // GET api/<ValuesController>/5

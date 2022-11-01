@@ -1,4 +1,5 @@
-﻿using AddressBookAngular.Infrastructure.Models.Db;
+﻿using AddressBookAngular.Infrastructure.Models;
+using AddressBookAngular.Infrastructure.Models.Db;
 using AddressBookAngular.Models;
 using AddressBookAngular.Repository;
 using AutoMapper;
@@ -19,6 +20,13 @@ namespace AddressBookAngular.Infrastructure.Services
         {
             _repo = repo;
             _mapper = mapper;
+        }
+
+        public async Task<PaginationData<ContactModel>> GetAllPaginatedContacts(string qName, string orderBy, bool isDesc, int pageNumber, int pageSize)
+        {
+            var list = await _repo.GetAllPaginatedContacts(qName, orderBy, isDesc, pageNumber, pageSize);
+            var modelList = _mapper.Map<PaginationData<ContactModel>>(list);
+            return modelList;
         }
 
         public async Task<IEnumerable<ContactModel>> GetAll(int pageNumber, int pageSize)

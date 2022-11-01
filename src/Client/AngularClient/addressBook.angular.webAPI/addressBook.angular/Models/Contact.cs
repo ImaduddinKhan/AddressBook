@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using AddressBookAngular.Infrastructure.Models.Db;
+using Microsoft.AspNetCore.Identity;
 
 namespace AddressBookAngular.Models
 {
@@ -12,7 +13,6 @@ namespace AddressBookAngular.Models
         public int Id { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         public DateTime LastUpdatedDate { get; set; }
-
     }
 
     public class AddContactModel
