@@ -16,33 +16,34 @@
 <br />
 
 <div class="container">
-  <div class="row">
-    <div class="form-group col-md-4">
+  <form class="row" (submit)="search()">
+    <div class="form-group col-md-3">
       <input
+        name="fname-txt"
         class="form-control form-control-"
         type="search"
         placeholder="Search by Name"
-        [(ngModel)]="fullName"
-        [routerLink]="['/contacts']"
-        [queryParams]="{}"
-        queryParamsHandling="merge"
+        [(ngModel)]="fName"
       />
     </div>
-    <div class="form-group col-md-4">
+    <div class="form-group col-md-3">
       <input
         class="form-control form-control-"
         type="search"
         placeholder="Search by Phone"
       />
     </div>
-    <div class="form-group col-md-4">
+    <div class="form-group col-md-3">
       <input
         class="form-control form-control-"
         type="search"
         placeholder="Search by Address"
       />
     </div>
-  </div>
+    <div class="col-md-3 text-center">
+      <button class="btn btn-primary" type="submit">Search</button>
+    </div>
+  </form>
 </div>
 
 <div class="container">
@@ -50,8 +51,14 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Full Name</th>
-          <th>Phone No.</th>
+          <th (click)="sortContacts('name')">
+            Full Name <span *ngIf="orderBy == 'name' && isDescSort">d</span>
+            <span *ngIf="orderBy == 'name' && !isDescSort">u</span>
+          </th>
+          <th (click)="sortContacts('mobile')">
+            Phone No.<span *ngIf="orderBy == 'mobile' && isDescSort">d</span>
+            <span *ngIf="orderBy == 'mobile' && !isDescSort">u</span>
+          </th>
           <th>Email</th>
           <th>Address</th>
           <th>Address Type</th>
@@ -61,12 +68,11 @@
         <tr
           *ngFor="
             let contact of contacts
-              | filterbyname: fullName
               | paginate
                 : {
-                    itemsPerPage: 10,
+                    itemsPerPage: pSize,
                     currentPage: pNo,
-                    totalItems: pSize
+                    totalItems: totalCount
                   }
           "
         >
@@ -105,7 +111,7 @@
     class="text-center"
     (pageChange)="pageChangeEvent($event)"
     [routerLink]="['/contacts']"
-    [queryParams]="{ pageNumber: pNo, pageSize: pSize }"
+    [queryParams]="{ pageNumber: pNo, pageSize: pSize, qName: fName }"
     queryParamsHandling="merge"
   ></pagination-controls>
 </div>

@@ -45,8 +45,8 @@ export class AddressbookService {
     return this.http.delete(this._baseUrl);
   }
 
-  findByTitle(title: any): Observable<Contact[]> {
-    return this.http.get<any[]>(`${this._baseUrl}?title=${title}`);
+  findByName(name: any): Observable<PagiginatedContacts[]> {
+    return this.http.get<any[]>(`${this._baseUrl}?qName=${name}`);
   }
 
   // getContacts(
@@ -62,12 +62,15 @@ export class AddressbookService {
 
   getAllPagiginatedContacts(
     pageNumber: number,
-    pageSize: number
+    pageSize: number,
+    name: string,
+    orderBy: string,
+    isDesc: boolean
   ): Observable<PagiginatedContacts> {
     return this.http.get<PagiginatedContacts>(
       `${
         this._baseUrl
-      }/${'?pageNumber='}${pageNumber}&${'pageSize='}${pageSize}`
+      }/${'?pageNumber='}${pageNumber}&${'pageSize='}${pageSize}&${'qName='}${name}&${'orderBy='}${orderBy}&${'isDesc='}${isDesc}`
     );
   }
 }

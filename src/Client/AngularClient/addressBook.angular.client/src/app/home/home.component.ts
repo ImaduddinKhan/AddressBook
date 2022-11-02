@@ -14,8 +14,12 @@ export class HomeComponent implements OnInit {
   currentIndex = -1;
   fullName = '';
 
-  pNo: number = 0;
-  pSize?: number = 100;
+  pNo: number = 1;
+  pSize?: number = 10;
+  totalCount: number = 100;
+  fName?: string = '';
+  orderBy: string = '';
+  isDescSort: boolean = false;
 
   constructor(
     private service: AddressbookService,
@@ -24,14 +28,15 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe((params) => {
+      this.pNo = params['pageNumber'] ?? 1;
+      this.pSize = params['pageSize'] ?? 10;
+      this.fName = params['qName'] ?? '';
+      this.orderBy = params['orderBy'] ?? '';
+      this.isDescSort = params['isDesc'] == 'true';
+    });
+
     this.retrieveContacts();
-    this.route.queryParams.subscribe((params) => {
-      console.log(params);
-    });
-    this.route.queryParams.subscribe((params) => {
-      this.pNo = params['pageNumber'];
-      this.pSize = params['pageSize'];
-    });
   }
 
   pageChangeEvent(event: any) {
@@ -40,15 +45,38 @@ export class HomeComponent implements OnInit {
   }
 
   retrieveContacts(): void {
-    this.service.getAllPagiginatedContacts(this.pNo, this.pSize).subscribe({
-      next: (data) => {
-        //
-        // this.pSize = data.dataCount;
-        this.contacts = data.data;
-        console.log(data);
-      },
-      error: (e) => console.error(e),
-    });
+    this.service
+      .getAllPagiginatedContacts(
+        this.pNo,
+        this.pSize,
+        this.fName,
+        this.orderBy,
+        this.isDescSort
+      )
+      .subscribe({
+        next: (data) => {
+          this.totalCount = data.dataCount;
+          this.contacts = data.data;
+          console.log(data);
+        },
+        error: (e) => console.error(e),
+      });
+  }
+
+  search() {
+    this.onPageChange();
+    this.retrieveContacts();
+  }
+
+  sortContacts(event: string) {
+    this.orderBy = event;
+    // this.orderBy == 'name' ? !this.isDescSort : this.isDescSort ? this.orderBy == 'mobile' ?
+
+    if (this.orderBy == 'name' || this.orderBy == 'mobile')
+      this.isDescSort = !this.isDescSort;
+
+    this.onPageChange();
+    this.retrieveContacts();
   }
 
   deleteContact(id: number) {
@@ -57,16 +85,6 @@ export class HomeComponent implements OnInit {
       console.log('Post deleted successfully!');
     });
   }
-
-  // removeAllContacts(): void {
-  //   this.service.deleteAll().subscribe({
-  //     next: (res) => {
-  //       console.log(res);
-  //       this.refreshList();
-  //     },
-  //     error: (e) => console.error(e),
-  //   });
-  // }
 
   onViewContact(id: number) {
     // complex calculation
@@ -77,10 +95,17 @@ export class HomeComponent implements OnInit {
     // complex calculation
     this.router.navigate(['/contacts', 'edit', id]);
   }
+
   onPageChange() {
     // complex calculation
     this.router.navigate(['/contacts'], {
-      queryParams: { pageNumber: this.pNo, pageSize: this.pSize },
+      queryParams: {
+        pageNumber: this.pNo,
+        pageSize: this.pSize,
+        qName: this.fName,
+        orderBy: this.orderBy,
+        isDesc: this.isDescSort,
+      },
     });
   }
 }
