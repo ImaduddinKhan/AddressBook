@@ -57,7 +57,7 @@ namespace AddressBookAngular.Repository
                     query = isDesc ? query.OrderByDescending(i => i.PhoneNumber) : query.OrderBy(i => i.PhoneNumber);
             }
 
-            query = query.Skip(pageNumber * pageSize).Take(pageSize);
+            query = query.Skip((pageNumber - 1) * pageSize).Take(pageSize);
             paginationData.Data = await query.ToListAsync();
             return paginationData;
         }
